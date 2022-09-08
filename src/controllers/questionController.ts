@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { insertQuestion, getAllQuestions } from "../services/questionService";
-import { postAnswer } from "../services/answerService";
+import { postAnswer, getAnswersById } from "../services/answerService";
 
 export async function createQuestion(req: Request, res: Response) {
   const question = req.body;
@@ -22,5 +22,7 @@ export async function get(req: Request, res: Response) {
 }
 
 export async function getById(req: Request, res: Response) {
-  // TODO
+  const questionId = Number(req.params.id);
+  const info = await getAnswersById(questionId);
+  res.status(201).send(info);
 }

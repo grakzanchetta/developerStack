@@ -7,8 +7,17 @@ async function insertQuestion(question: createQuestion) {
   });
 }
 
+async function findQuestionById(id: number) {
+  const question = await prisma.questions.findFirst({
+    where: {
+      id,
+    },
+  });
+  return question;
+}
+
 async function findAllQuestions() {
   return await prisma.questions.findMany({});
 }
 
-export { insertQuestion, findAllQuestions };
+export { insertQuestion, findAllQuestions, findQuestionById };

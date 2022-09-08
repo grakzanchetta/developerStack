@@ -11,4 +11,13 @@ async function insertAnswer(questionId: number, answerData: createAnswer) {
   });
 }
 
-export { insertAnswer };
+async function findAnswerByQuestionId(questionId: number) {
+  const answerList = await prisma.answers.findMany({
+    where: {
+      questionId,
+    },
+  });
+  return answerList;
+}
+
+export { insertAnswer, findAnswerByQuestionId };

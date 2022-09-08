@@ -1,4 +1,8 @@
-import { insertAnswer } from "../repositories/answerRepository";
+import {
+  insertAnswer,
+  findAnswerByQuestionId,
+} from "../repositories/answerRepository";
+import { findQuestionById } from "../repositories/questionRepository";
 import { createAnswer } from "../types/answerTypes";
 
 async function postAnswer(questionId: number, answerData: createAnswer) {
@@ -7,4 +11,15 @@ async function postAnswer(questionId: number, answerData: createAnswer) {
   });
 }
 
-export { postAnswer };
+async function getAnswersById(questionId: number) {
+  const questionInfo = await findQuestionById(questionId);
+  const answersInfo = await findAnswerByQuestionId(questionId);
+
+  console.log(questionInfo);
+  return {
+    questionInfo,
+    answers: answersInfo,
+  };
+}
+
+export { postAnswer, getAnswersById };
