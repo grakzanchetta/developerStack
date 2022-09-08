@@ -16,6 +16,10 @@ async function findAnswerByQuestionId(questionId: number) {
     where: {
       questionId,
     },
+    select: {
+      answeredBy: true,
+      answer: true,
+    },
   });
   return answerList;
 }

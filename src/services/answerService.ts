@@ -17,7 +17,7 @@ async function getAnswersById(questionId: number) {
 
   console.log(questionInfo);
   return {
-    questionInfo,
+    questions: questionInfo,
     answers: answersInfo,
   };
 }
