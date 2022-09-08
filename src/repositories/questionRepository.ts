@@ -7,4 +7,8 @@ async function insertQuestion(question: createQuestion) {
   });
 }
 
-export { insertQuestion };
+async function findAllQuestions() {
+  return await prisma.questions.findMany({});
+}
+
+export { insertQuestion, findAllQuestions };
